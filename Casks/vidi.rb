@@ -1,0 +1,33 @@
+cask "vidi" do
+  version "1.6.0,70"
+  sha256 "0ea87f500dd391a487dde9b1e4c95a74a370b61d99bdd6799e98fb7f278fe79f"
+
+  url "https://pub-27d78e2130484b6d8cd7b966751bb826.r2.dev/releases/v#{version.csv.first}-build.#{version.csv.second}/Vidi-#{version.csv.first}-arm64.dmg",
+      verified: "pub-27d78e2130484b6d8cd7b966751bb826.r2.dev/"
+  name "Vidi"
+  desc "Records product demos from a plan your coding agent writes"
+  homepage "https://vidi-cloud.vercel.app/"
+
+  livecheck do
+    url "{{r2}}/releases/latest/latest.json"
+    strategy :json do |json|
+      "#{json["version"].split("+").first},#{json["build"]}"
+    end
+  end
+
+  depends_on arch: :arm64
+  depends_on macos: ">= :monterey"
+
+  app "Vidi.app"
+
+  zap trash: [
+    "~/Library/Application Support/Vidi",
+    "~/Library/Preferences/com.vidi.demostudio.plist",
+    "~/Library/Saved Application State/com.vidi.demostudio.savedState",
+  ]
+
+  caveats <<~EOS
+    Vidi is not notarized by Apple. The first time you open it, macOS will block it:
+    open System Settings > Privacy & Security and choose "Open Anyway".
+  EOS
+end
