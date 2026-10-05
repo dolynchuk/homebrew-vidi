@@ -8,7 +8,7 @@ cask "vidi" do
   homepage "https://vidi-cloud.vercel.app/"
 
   livecheck do
-    url "{{r2}}/releases/latest/latest.json"
+    url "https://pub-27d78e2130484b6d8cd7b966751bb826.r2.dev/releases/latest/latest.json"
     strategy :json do |json|
       "#{json["version"].split("+").first},#{json["build"]}"
     end

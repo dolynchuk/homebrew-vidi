@@ -36,5 +36,5 @@ if (sha256) {
 }
 
 const template = await fs.readFile(new URL('../cask.rb.template', import.meta.url), 'utf8')
-await fs.writeFile(caskFile, template.replace('{{version}}', version).replace('{{sha256}}', sha256).replace('{{r2}}', R2))
+await fs.writeFile(caskFile, template.replaceAll('{{version}}', version).replaceAll('{{sha256}}', sha256).replaceAll('{{r2}}', R2))
 console.log(`Cask updated to ${version} (${sha256})`)
