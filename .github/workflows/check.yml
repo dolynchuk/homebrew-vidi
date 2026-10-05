@@ -1,0 +1,29 @@
+name: Check cask
+
+# What a user runs, on a clean Mac: style, audit, and a real install and uninstall.
+on:
+  push:
+    paths: ["Casks/**", ".github/**"]
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: macos-latest
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: "1"
+      HOMEBREW_NO_INSTALL_CLEANUP: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tap this checkout
+        run: |
+          mkdir -p "$(brew --repository)/Library/Taps/dolynchuk"
+          ln -s "$GITHUB_WORKSPACE" "$(brew --repository)/Library/Taps/dolynchuk/homebrew-vidi"
+      - name: Style
+        run: brew style --cask dolynchuk/vidi/vidi
+      - name: Audit
+        run: brew audit --cask --online dolynchuk/vidi/vidi
+      - name: Install and uninstall
+        run: |
+          brew install --cask dolynchuk/vidi/vidi
+          test -d /Applications/Vidi.app
+          brew uninstall --cask vidi

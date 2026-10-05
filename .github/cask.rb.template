@@ -2,8 +2,7 @@ cask "vidi" do
   version "{{version}}"
   sha256 "{{sha256}}"
 
-  url "{{r2}}/releases/v#{version.csv.first}-build.#{version.csv.second}/Vidi-#{version.csv.first}-arm64.dmg",
-      verified: "pub-27d78e2130484b6d8cd7b966751bb826.r2.dev/"
+  url "{{r2}}/releases/v#{version.csv.first}-build.#{version.csv.second}/Vidi-#{version.csv.first}-arm64.dmg"
   name "Vidi"
   desc "Records product demos from a plan your coding agent writes"
   homepage "https://vidi-cloud.vercel.app/"
@@ -16,7 +15,7 @@ cask "vidi" do
   end
 
   depends_on arch: :arm64
-  depends_on macos: ">= :monterey"
+  depends_on macos: :monterey
 
   app "Vidi.app"
 
