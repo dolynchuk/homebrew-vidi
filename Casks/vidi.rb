@@ -1,6 +1,6 @@
 cask "vidi" do
-  version "1.12.1,212"
-  sha256 "3a228179081ea1afc896411ebbc12e33d000662325c0ed1b9ca2ecc553c42305"
+  version "1.12.1,214"
+  sha256 "d4e86fed7d0aa0375fb2641bfe625754bc323568faba0eafcad41e59ea66c54d"
 
   url "https://pub-27d78e2130484b6d8cd7b966751bb826.r2.dev/releases/v#{version.csv.first}-build.#{version.csv.second}/Vidi-#{version.csv.first}-arm64.dmg"
   name "Vidi"
